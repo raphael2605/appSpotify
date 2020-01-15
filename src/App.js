@@ -11,23 +11,24 @@ import Header from './components/Header';
 import { Wrapper, Container, Content } from './styles/components';
 
 import Routes from './routes';
+//import store from './store';
 
 function App() {
   return (
     <Fragment>
       <GlobalStyle />
-      <BrowserRouter>
-        <Wrapper>
-          <Container>
-            <Sidebar />
-            <Content>
-              <Header />
-              <Routes />
-            </Content>
-            <Player />
-          </Container>
-        </Wrapper>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Wrapper>
+            <Container>
+              <Sidebar />
+              <Content>
+                <Header />
+                <Routes />
+              </Content>
+              <Player />
+            </Container>
+          </Wrapper>
+        </BrowserRouter>
     </Fragment>
   );
 }

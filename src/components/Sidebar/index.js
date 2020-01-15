@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, NewPlaylist, Nav } from './styles';
 
 import AddPlaylistIcon from '../../assets/images/add_playlist.svg'
-
+/*eslint-disable */
 const Sidebar = () => (
   <Container>
     <div>
@@ -58,5 +58,6 @@ const Sidebar = () => (
     </NewPlaylist>
   </Container>
 )
+/*eslint-enable */
 
 export default Sidebar;

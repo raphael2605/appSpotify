@@ -34,5 +34,58 @@ export const Header = styled.div`
       letter-spacing: 1.11px;
       text-transform: uppercase;
     }
+
+    button {
+      background: #1db854;
+      height: 32px;
+      border-radius: 16px;
+      color: #FFF;
+      line-height: 32px;
+      padding: 0 35px;
+      font-size: 12px;
+      letter-spacing: 1.11px;
+      margin-top: 10px;
+      border: 0;
+      text-transform: uppercase;
+    }
+  }
+`;
+
+export const SongList = styled.table`
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+
+  thead th {
+    font-size: 11px;
+    color: #b3b3b3;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    letter-spacing: 1.11px;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  tbody td {
+    border-top: #282828;
+    font-size: 13px;
+    padding: 0 10px;
+    line-height: 40px;
+
+    &:first-child {
+      width: 80px;
+      text-align: right;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  tbody tr:hover td {
+    background: #282828;
   }
 `;

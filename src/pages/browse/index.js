@@ -1,33 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as PlaylistsActions } from '../../store/ducks/playlists';
+
 import { Container, Title, List, Playlist } from './styles';
 
-const Browse = () => (
-  <Container>
-    <Title>Navegar</Title>
+class Browse extends Component {
+  static propTypes = {
+    getPlaylistsRequest: PropTypes.func.isRequired,
+    playlists: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        thumbnail: PropTypes.string,
+      })),
+    }).isRequired,
+  };
+  componentDidMount() {
+    this.props.getPlaylistsRequest()
+  }
 
-    <List>
-      <Playlist to="/playlist/1">
-        <img src="https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="album cover" />
-        <strong>Rock</strong>
-        <p>Rock mundial</p>
-      </Playlist>
-      <Playlist to="/playlist/1">
-        <img src="https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="album cover" />
-        <strong>Rock</strong>
-        <p>Rock mundial</p>
-      </Playlist>
-      <Playlist to="/playlist/1">
-        <img src="https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="album cover" />
-        <strong>Rock</strong>
-        <p>Rock mundial</p>
-      </Playlist>
-      <Playlist to="/playlist/1">
-        <img src="https://images.theconversation.com/files/258026/original/file-20190208-174861-nms2kt.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="album cover" />
-        <strong>Rock</strong>
-        <p>Rock mundial</p>
-      </Playlist>
-    </List>
-  </Container>
-);
+  render() {
+    return (
+      <Container>
+        <Title>Navegar</Title>
 
-export default Browse;
+        <List>
+          {this.props.playlists.data.map(playlist => (
+            <Playlist key={playlist.id} to = {`/playlists/${playlist.id}`}>
+              <img src={playlist.thumbnail} alt={playlist.title} />
+              <strong>{playlist.title}</strong>
+              <p>{playlist.description}</p>
+            </Playlist>
+          ))}
+        </List>
+      </Container>
+    )
+  }
+};
+
+
+const mapStateToProps = state => ({
+  playlists: state.playlists,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(PlaylistsActions, dispatch);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);

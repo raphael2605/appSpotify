@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -33,7 +33,7 @@ class Browse extends Component {
 
         <List>
           {this.props.playlists.data.map(playlist => (
-            <Playlist key={playlist.id} to = {`/playlists/${playlist.id}`}>
+            <Playlist key={playlist.id} to={`/playlist/${playlist.id}`}>
               <img src={playlist.thumbnail} alt={playlist.title} />
               <strong>{playlist.title}</strong>
               <p>{playlist.description}</p>

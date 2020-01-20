@@ -16,7 +16,7 @@ class Playlist extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
-        id: PropTypes.number,
+        id: PropTypes.string,
       }),
     }).isRequired,
     getPlaylistDetailsRequest: PropTypes.func.isRequired,
@@ -50,7 +50,7 @@ class Playlist extends Component {
     const { id } = this.props.match.params;
 
     this.props.getPlaylistDetailsRequest(id);
-  }
+  };
 
   renderDetails = () => {
     const playlist = this.props.playlistDetails.data;
@@ -104,12 +104,12 @@ class Playlist extends Component {
 
   render() {
     return this.props.playlistDetails.loading ? (
-      <Container loading>
+      <Container > //loading>
         <Loading />
       </Container>
     ) : (
         this.renderDetails()
-      );
+    );
   }
 }
 

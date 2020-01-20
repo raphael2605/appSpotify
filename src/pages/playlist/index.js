@@ -13,7 +13,6 @@ import ClockIcon from '../../assets/images/clock.svg'
 import PlusIcon from '../../assets/images/plus.svg'
 
 class Playlist extends Component {
-
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({

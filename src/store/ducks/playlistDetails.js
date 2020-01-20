@@ -22,7 +22,7 @@ export default function playlistDetails(state = INITIAL_STATE, action) {
 export const Creators = {
   getPlaylistDetailsRequest: id => ({
     type: Types.GET_REQUEST,
-    payload: { id }
+    payload: { id },
   }),
 
   getPlaylistDetailsSuccess: data => ({

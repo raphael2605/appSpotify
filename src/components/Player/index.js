@@ -17,7 +17,7 @@ import PauseIcon from '../../assets/images/pause.svg'
 import ForwardIcon from '../../assets/images/forward.svg'
 import RepeatIcon from '../../assets/images/repeat.svg'
 
-const Player = ({ player, play, pause, next, prev, playing, position, duration, handlePosition, setPosition, positionShown, progress }) => (
+const Player = ({ player, play, pause, next, prev, playing, position, duration, handlePosition, setPosition, positionShown, progress, setVolume }) => (
   <Container>
     {!!player.currentSong && (
       <Sound
@@ -26,6 +26,7 @@ const Player = ({ player, play, pause, next, prev, playing, position, duration, 
         onFinishedPlaying={next}
         onPlaying={playing}
         position={player.position}
+        volume={player.volume}
       />
     )}
     <Current>
@@ -75,8 +76,8 @@ const Player = ({ player, play, pause, next, prev, playing, position, duration, 
             trackStyle={{ background: '#1ED760' }}
             handleStyle={{ border: 0 }}
             max={1000}
-            onCHange={value => handlePosition(value / 1000)}
-            onAfterCHange={value => setPosition(value / 1000)}
+            onChange={value => handlePosition(value / 1000)}
+            onAfterChange={value => setPosition(value / 1000)}
             value={progress}
           />
         </ProgressSlider>
@@ -91,7 +92,8 @@ const Player = ({ player, play, pause, next, prev, playing, position, duration, 
       <Slider railStyle={{ background: '#404040', borderRadius: 10 }}
         trackStyle={{ background: '#fff' }}
         handleStyle={{ display: 'none' }}
-        value={100}
+        value={player.volume}
+        onChange={setVolume}
       />
     </Volume>
   </Container>
@@ -118,6 +120,7 @@ Player.propTypes = {
   setPosition: PropTypes.func.isRequired,
   positionShown: PropTypes.string.isRequired,
   progess: PropTypes.number.isRequired,
+  setVolume: PropTypes.number.isRequired,
 };
 
 function msToTime(duration) {

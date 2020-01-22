@@ -128,6 +128,7 @@ class Playlist extends Component {
   }
 }
 
+
 const mapStateToProps = state => ({
   playlistDetails: state.playlistDetails,
   currentSong: state.player.currentSong,

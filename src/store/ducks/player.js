@@ -6,12 +6,18 @@ export const Types = {
   PAUSE: 'player/PAUSE',
   NEXT: 'player/NEXT',
   PREV: 'player/PREV',
+  PLAYING: 'player/PLAYING',
+  HANDLE_POSITION: 'player/HANDLE_POSITION',
+  SET_POSTION: 'player/SET_POSTION',
 }
 
 const INITIAL_STATE = {
   currentSong: null,
   list: [],
   status: Sound.status.PLAYING,
+  position: null,
+  positionShonw: null,
+  duration: null,
 };
 
 export default function error(state = INITIAL_STATE, action) {
@@ -32,7 +38,7 @@ export default function error(state = INITIAL_STATE, action) {
       const prev = state.list[currentIndex - 1];
 
       if (prev) {
-        return { ...state, currentSong: prev, status: Sound.status.PLAYING };
+        return { ...state, currentSong: prev, status: Sound.status.PLAYING, position: 0 };
       }
       return state;
     }
@@ -41,10 +47,18 @@ export default function error(state = INITIAL_STATE, action) {
       const next = state.list[currentIndex + 1];
 
       if (next) {
-        return { ...state, currentSong: next, status: Sound.status.PLAYING };
+        return { ...state, currentSong: next, status: Sound.status.PLAYING, position: 0 };
       }
       return state;
     }
+    case Types.PLAYING:
+      return { ...state, ...action.payload }
+
+    case Types.HANDLE_POSITION:
+      return { ...state, positionShonw: state.duration = action.payload.percent };
+
+    case Types.SET_POSTION:
+      return { ...state, position: state.duration = action.payload.percent, positionShonw: null };
     default:
       return state;
   }
@@ -63,4 +77,20 @@ export const Creators = {
   next: () => ({ type: Types.NEXT }),
 
   prev: () => ({ type: Types.PREV }),
+
+  playing: ({ position, duration }) => ({
+    type: Types.PLAYING,
+    payload: { position, duration },
+  }),
+
+  handlePosition: percent => ({
+    type: Types.HANDLE_POSITION,
+    payload: { percent },
+  }),
+
+  setPosition: percent => ({
+    type: Types.SET_POSTION,
+    payload: { percent },
+  }),
+
 };

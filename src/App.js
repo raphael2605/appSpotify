@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ import store from './store';
 
 function App() {
   return (
-    <Fragment>
+    <>
       <GlobalStyle />
       <Provider store={store}>
         <BrowserRouter>
@@ -34,7 +34,7 @@ function App() {
           </Wrapper>
         </BrowserRouter>
       </Provider>
-    </Fragment>
+    </>
   );
 }
 
